@@ -1,5 +1,5 @@
 {
-  "name": "datetime-tz-func",
+  "name": "datetime-timezone-converter",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "author": "Rishikesh Suvarna",
   "license": "ISC",
-  "description": "",
+  "description": "This project is an API for converting datetime values between different timezones. It is built for func.live and utilizes JavaScript's internal `Intl` functions to handle the conversions.",
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
