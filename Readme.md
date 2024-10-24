@@ -38,8 +38,10 @@ POST /functions/convert-datetime-tz
 Content-Type: application/json
 
 {
-    "datetime": "2024-10-24T12:00:00Z",
-    "timezone": "Asia/Kolkata"
+    "input": {
+        "datetime": "2024-10-24T12:00:00Z",
+        "timezone": "Asia/Kolkata"
+    }
 }
 ```
 
