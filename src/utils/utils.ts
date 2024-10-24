@@ -24,5 +24,6 @@ export const isValidTimezone = (timezone: string): boolean => {
  *
  */
 export const isValidISODateTimeString = (datetime: string): boolean => {
+    if(!datetime) return false;
     return new Date(datetime).getDate() ? true : false;
 }

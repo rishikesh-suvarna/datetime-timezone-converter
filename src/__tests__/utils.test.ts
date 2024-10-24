@@ -1,4 +1,4 @@
-import { isValidTimezone } from '../utils/utils';
+import { isValidISODateTimeString, isValidTimezone } from '../utils/utils';
 
 describe('isValidTimezone', () => {
     it('should return true for a valid timezone', () => {
@@ -28,4 +28,23 @@ describe('isValidTimezone', () => {
     it('should return false for an undefined value', () => {
         expect(isValidTimezone(undefined as any)).toBe(false);
     });
+});
+
+describe('isValidISODateTimeString', () => {
+    it('should return true for a valid ISO datetime string', () => {
+        expect(isValidISODateTimeString('2021-12-01T10:00:00Z')).toBe(true);
+    });
+    
+    it('should return false for an invalid ISO datetime string', () => {
+        expect(isValidISODateTimeString('2021-12-01T10:00:000Z')).toBe(false);
+    });
+
+    it('should return false for an undefined value', () => {
+        expect(isValidISODateTimeString(undefined as any)).toBe(false);
+    });
+
+    it('should return false for a null value', () => {
+        expect(isValidISODateTimeString(null as any)).toBe(false);
+    });
+
 });
