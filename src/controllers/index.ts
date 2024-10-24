@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, RequestHandler } from "express";
 import { datetimeConvertor } from "../functions/datetime_convertor";
-import { isValidISODateTimeString, isValidTimezone } from "../utils";
+import { isValidISODateTimeString, isValidTimezone } from "../utils/utils";
 
 /**
  * Controller to convert the given datetime to the specified timezone

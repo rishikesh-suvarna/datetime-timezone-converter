@@ -8,6 +8,7 @@
  */
 export const isValidTimezone = (timezone: string): boolean => {
     try {
+        if(!timezone) return false;
         Intl.DateTimeFormat('en-US', { timeZone: timezone });
         return true;
     } catch (error) {
