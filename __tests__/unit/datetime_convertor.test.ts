@@ -1,4 +1,4 @@
-import { datetimeConvertor } from '../functions/datetime_convertor';
+import { datetimeConvertor } from '../../src/functions/datetime_convertor';
 
 describe('datetimeConvertor', () => {
     it('should convert a given datetime string to the specified timezone', () => {

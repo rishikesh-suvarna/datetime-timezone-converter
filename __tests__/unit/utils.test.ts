@@ -1,4 +1,4 @@
-import { isValidISODateTimeString, isValidTimezone } from '../utils/utils';
+import { isValidISODateTimeString, isValidTimezone } from '../../src/utils/utils';
 
 describe('isValidTimezone', () => {
     it('should return true for a valid timezone', () => {

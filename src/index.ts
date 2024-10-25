@@ -21,6 +21,13 @@ app.post('/functions/convert-datetime-tz', datetimeConversionController);
 
 
 // Start the server
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
+
+app.all("*", (req, res) => {
+    res.status(404).json({ message: 'Not Found' });
+});
+
+// Export the server for testing
+export default server;
