@@ -6,7 +6,7 @@
     "dev": "nodemon",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "TZ=UTC jest",
+    "test": "TZ=UTC jest --coverage",
     "test:unit": "TZ=UTC jest --testPathPattern=unit",
     "test:e2e": "jest --testPathPattern=e2e"
   },
@@ -28,6 +28,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "express-rate-limit": "^7.4.1"
+    "express-rate-limit": "^7.4.1",
+    "winston": "^3.15.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }

@@ -49,6 +49,16 @@ describe('E2E Tests for /functions/convert-datetime-tz', () => {
         expect(response.body).toHaveProperty('message');
     });
 
+    it('GET /functions/convert-datetime-tz should docs of the API with keys name, description, input, output', async () => {
+        const response = await request(server)
+            .get('/functions/convert-datetime-tz');
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('name');
+        expect(response.body).toHaveProperty('description');
+        expect(response.body).toHaveProperty('input');
+        expect(response.body).toHaveProperty('output');
+    });
+
     it('GET / should return 404 if route is invalid', async () => {
         const response = await request(server)
             .post('/');

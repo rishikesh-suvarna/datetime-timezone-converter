@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, RequestHandler } from "express";
 import { datetimeConvertor } from "../functions/datetime_convertor";
 import { isValidISODateTimeString, isValidTimezone } from "../utils/utils";
+import logger from "../utils/logger";
 
 /**
  * Controller to convert the given datetime to the specified timezone
@@ -9,18 +10,22 @@ import { isValidISODateTimeString, isValidTimezone } from "../utils/utils";
  */
 export const datetimeConversionController: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        logger.info('POST /functions/convert-datetime-tz');
         const { input: { datetime, timezone } } = req.body;
 
         // Validating inputs
         if (!timezone) {
+            logger.error('Invalid input, Please check the provided data');
             res.status(400).json({ message: 'Invalid input, Please check the provided data' });
             return;
         }
         if(datetime && !isValidISODateTimeString(datetime)) {
+            logger.error('Invalid datetime, Please provide a valid ISO datetime string');
             res.status(400).json({ message: 'Invalid datetime, Please provide a valid ISO datetime string' });
             return;
         }
         if(!isValidTimezone(timezone)) {
+            logger.error('Invalid timezone, Please provide a valid timezone refer: https://worldtimeapi.org/timezones');
             res.status(400).json({ message: 'Invalid timezone, Please provide a valid timezone refer: https://worldtimeapi.org/timezones' });
             return;
         }
@@ -38,6 +43,7 @@ export const datetimeConversionController: RequestHandler = async (req: Request,
         return;
     } catch (error: Error | any) {
         console.error(error);
+        logger.error(error.message);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
         return;
     }
@@ -51,6 +57,7 @@ export const datetimeConversionController: RequestHandler = async (req: Request,
  */
 export const datetimeConversionDesriptionController: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        logger.info('GET /functions/convert-datetime-tz');
         res.status(200).json({
             "name": "convert-datetime-tz",
             "description": "This func converts the given datetime to the specified timezone and utilizes JavaScript's internal `Intl` functions to handle the conversions, if no datetime is provided then it will convert the current UTC datetime to the specified timezone. The timezone should be a valid timezone string refer: https://worldtimeapi.org/timezones. The datetime should be a valid ISO datetime string. The code is written in TypeScript and the API is built using Express.js and tested using Jest and Supertest. The code is available on My GitHub: https://github.com/rishikesh-suvarna/datetime-timezone-converter",
@@ -82,6 +89,7 @@ export const datetimeConversionDesriptionController: RequestHandler = async (req
         return;
     } catch (error: Error | any) {
         console.error(error);
+        logger.error(error.message);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
         return;
     }
