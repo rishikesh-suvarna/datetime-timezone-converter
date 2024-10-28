@@ -20,7 +20,7 @@ describe('datetimeConvertor', () => {
         expect(() => datetimeConvertor(datetime, timezone)).toThrow('An error occurred while converting the datetime to the specified timezone');
     });
 
-    it('should use the current date and time if datetime is not provided', () => {
+    it('should use the UTC date and time if datetime is not provided', () => {
         const timezone = 'Asia/Kolkata';
         const result = datetimeConvertor('', timezone);
 

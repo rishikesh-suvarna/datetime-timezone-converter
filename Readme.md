@@ -6,7 +6,7 @@ This project is an API for converting datetime values between different timezone
 
 - Convert datetime values to different timezones.
 - Accepts datetime in ISO string format.
-- Defaults to the server's current date and time if no datetime is provided.
+- Defaults to the UTC date and time if no datetime is provided.
 
 ## API Endpoints
 
@@ -28,7 +28,7 @@ GET /functions/convert-datetime-tz
 
 **Parameters:**
 
-- `datetime` (optional): The datetime value in ISO string format. If not provided, the server's current date and time will be used.
+- `datetime` (optional): The datetime value in ISO string format. If not provided, the UTC date and time will be used.
 - `timezone` (required): The target timezone for conversion.
 
 **Example Request:**

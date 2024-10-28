@@ -36,8 +36,15 @@ export const datetimeConversionController: RequestHandler = async (req: Request,
         // Return the response
         res.status(200).json({
             "output": {
+                "status": "success",
+                "message": `The datetime ${datetime ? datetime : new Date().toISOString()} is converted to ${new_date.toISOString()} in the timezone ${timezone}`,
+                "timestamp": new Date().toISOString(),
                 "original_datetime": datetime,
+                "timezone": timezone,
                 "converted_datetime": new_date.toISOString(),
+                "date": new_date.toDateString(),
+                "time": new_date.toLocaleTimeString(),
+                "day": new_date.toLocaleDateString(undefined, { weekday: 'long' }),
             }
         });
         return;
@@ -60,7 +67,7 @@ export const datetimeConversionDesriptionController: RequestHandler = async (req
         logger.info('GET /functions/convert-datetime-tz');
         res.status(200).json({
             "name": "convert-datetime-tz",
-            "description": "This func converts the given datetime to the specified timezone and utilizes JavaScript's internal `Intl` functions to handle the conversions, if no datetime is provided then it will convert the current UTC datetime to the specified timezone. The timezone should be a valid timezone string refer: https://worldtimeapi.org/timezones. The datetime should be a valid ISO datetime string. The code is written in TypeScript and the API is built using Express.js and tested using Jest and Supertest. The code is available on My GitHub: https://github.com/rishikesh-suvarna/datetime-timezone-converter",
+            "description": "This func converts the given datetime to the specified timezone and utilizes JavaScript's internal `Intl` functions to handle the conversions, if no datetime is provided then it will convert the UTC datetime to the specified timezone. The timezone should be a valid timezone string refer: https://worldtimeapi.org/timezones. The datetime should be a valid ISO datetime string. The code is written in TypeScript and the API is built using Express.js and tested using Jest and Supertest. The code is available on My GitHub: https://github.com/rishikesh-suvarna/datetime-timezone-converter",
             "input": {
                 "datetime": {
                     "type": "string",
@@ -74,15 +81,50 @@ export const datetimeConversionDesriptionController: RequestHandler = async (req
                 }
             },
             "output": {
+                "status": {
+                    "type": "string",
+                    "description": "The status of the response",
+                    "example": "success"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "The message describing the conversion",
+                    "example": "The datetime 2024-10-24T12:00:00Z is converted to 2024-10-24T17:30:00Z in the timezone Asia/Kolkata"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "description": "The timestamp of the response",
+                    "example": "2024-10-24T12:00:00Z"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The timezone to which the datetime is converted",
+                    "example": "Asia/Kolkata"
+                },
                 "original_datetime": {
                     "type": "string",
-                    "description": "The original datetime string provided in the input",
+                    "description": "The original datetime string provided in the input or the UTC datetime if not provided in ISO format",
                     "example": "2024-10-24T12:00:00Z"
                 },
                 "converted_datetime": {
                     "type": "string",
-                    "description": "The converted datetime string in the specified timezone",
+                    "description": "The converted datetime string in the specified timezone in ISO format",
                     "example": "2024-10-24T17:30:00Z"
+                },
+                "date": {
+                    "type": "string",
+                    "description": "The date part of the converted datetime",
+                    "example": "Mon Oct 24 2024"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "The time part of the converted datetime",
+                    "example": "5:30:00 PM"
+                },
+                "day": {
+                    "type": "string",
+                    "description": "The day of the week of the converted datetime",
+                    "example": "Thursday"
                 }
             }
         });

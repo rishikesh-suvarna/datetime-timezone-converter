@@ -1,14 +1,14 @@
 /**
  * Converts a given datetime string to a Date object in the specified timezone.
  *
- * @param datetime - The datetime string to be converted. If not provided, the current date and time will be used.
+ * @param datetime - The datetime string to be converted. If not provided, the UTC date and time will be used.
  * @param timezone - The timezone identifier (e.g., 'Asia/Kolkata, Europe/Londdon') to which the datetime should be converted.
  * @returns A Date object representing the converted datetime in the specified timezone.
  *
  */
 export const datetimeConvertor = (datetime: string, timezone: string): Date => {
     try {
-        // If datetime is not provided, we will take the current date and time
+        // If datetime is not provided, we will take the UTC date and time
         const date = datetime ? new Date(datetime) : new Date();
     
         const formatter = new Intl.DateTimeFormat('en-US', { timeZone: timezone, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
