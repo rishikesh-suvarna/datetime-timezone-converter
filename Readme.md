@@ -12,17 +12,17 @@ This project is an API for converting datetime values between different timezone
 
 ### Convert Datetime
 
-**Endpoint:** `/functions/convert-datetime-tz`
+**Endpoint:** `/functions/convertDatetimeToAnotherTz`
 
 **Method:** `POST`
 
 **Example Request:**
 
 ```http
-GET /functions/convert-datetime-tz
+GET /functions/convertDatetimeToAnotherTz
 ```
 
-**Endpoint:** `/functions/convert-datetime-tz`
+**Endpoint:** `/functions/convertDatetimeToAnotherTz`
 
 **Method:** `POST`
 
@@ -34,7 +34,7 @@ GET /functions/convert-datetime-tz
 **Example Request:**
 
 ```http
-POST /functions/convert-datetime-tz
+POST /functions/convertDatetimeToAnotherTz
 Content-Type: application/json
 
 {

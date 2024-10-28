@@ -19,8 +19,8 @@ app.use(rateLimiterConfig);
 
 
 // Routes
-app.get('/functions/convert-datetime-tz', datetimeConversionDesriptionController);
-app.post('/functions/convert-datetime-tz', datetimeConversionController);
+app.get('/functions/convertDatetimeToAnotherTz', datetimeConversionDesriptionController);
+app.post('/functions/convertDatetimeToAnotherTz', datetimeConversionController);
 
 
 // Start the server
