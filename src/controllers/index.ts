@@ -52,10 +52,31 @@ export const datetimeConversionController: RequestHandler = async (req: Request,
 export const datetimeConversionDesriptionController: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     try {
         res.status(200).json({
-            "description": "This function converts the given datetime to the specified timezone",
+            "name": "convert-datetime-tz",
+            "description": "This func converts the given datetime to the specified timezone and utilizes JavaScript's internal `Intl` functions to handle the conversions, if no datetime is provided then it will convert the current UTC datetime to the specified timezone. The timezone should be a valid timezone string refer: https://worldtimeapi.org/timezones. The datetime should be a valid ISO datetime string. The code is written in TypeScript and the API is built using Express.js and tested using Jest and Supertest. The code is available on My GitHub: https://github.com/rishikesh-suvarna/datetime-timezone-converter",
             "input": {
-                "datetime": "ISO datetime string (optional)",
-                "timezone": "Timezone string (required)"
+                "datetime": {
+                    "type": "string",
+                    "description": "The datetime to be converted to the specified timezone in ISO format",
+                    "example": "2024-10-24T12:00:00Z"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The timezone to which the datetime should be converted, refer: https://worldtimeapi.org/timezones",
+                    "example": "Asia/Kolkata"
+                }
+            },
+            "output": {
+                "original_datetime": {
+                    "type": "string",
+                    "description": "The original datetime string provided in the input",
+                    "example": "2024-10-24T12:00:00Z"
+                },
+                "converted_datetime": {
+                    "type": "string",
+                    "description": "The converted datetime string in the specified timezone",
+                    "example": "2024-10-24T17:30:00Z"
+                }
             }
         });
         return;

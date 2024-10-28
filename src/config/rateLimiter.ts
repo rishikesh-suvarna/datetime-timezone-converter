@@ -1,6 +1,6 @@
 import { rateLimit } from 'express-rate-limit'
 
-export const limiter = rateLimit({
+export const rateLimiterConfig = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	limit: 100,
 	standardHeaders: 'draft-7', // From documentation

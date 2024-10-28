@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { datetimeConversionController, datetimeConversionDesriptionController } from './controllers';
-import { limiter } from './config/rateLimiter';
+import { rateLimiterConfig } from './config/rateLimiter';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -12,7 +12,7 @@ const app = express();
 // Middleware to parse incoming request data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(limiter);
+app.use(rateLimiterConfig);
 
 
 // Routes

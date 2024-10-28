@@ -8,7 +8,7 @@
     "start": "node dist/index.js",
     "test": "TZ=UTC jest",
     "test:unit": "TZ=UTC jest --testPathPattern=unit",
-    "test:e2e": "jest --testPathPattern=e2e --detectOpenHandles"
+    "test:e2e": "jest --testPathPattern=e2e"
   },
   "author": "Rishikesh Suvarna",
   "license": "ISC",
