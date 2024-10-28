@@ -9,6 +9,9 @@ dotenv.config();
 // Initialize express application
 const app = express();
 
+// Trust the reverse proxy
+app.set('trust proxy', true);
+
 // Middleware to parse incoming request data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
