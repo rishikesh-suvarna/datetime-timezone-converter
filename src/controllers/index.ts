@@ -69,62 +69,85 @@ export const datetimeConversionDesriptionController: RequestHandler = async (req
             "name": "convertDatetimeToAnotherTz",
             "description": "This func converts the given datetime to the specified timezone and utilizes JavaScript's internal `Intl` functions to handle the conversions, if no datetime is provided then it will convert the UTC datetime to the specified timezone. The timezone should be a valid timezone string refer: https://worldtimeapi.org/timezones. The datetime should be a valid ISO datetime string. The code is written in TypeScript and the API is built using Express.js and tested using Jest and Supertest. The code is available on My GitHub: https://github.com/rishikesh-suvarna/datetime-timezone-converter",
             "input": {
-                "datetime": {
-                    "type": "string",
-                    "description": "The datetime to be converted to the specified timezone in ISO format",
-                    "example": "2024-10-24T12:00:00Z"
+                "type": "object",
+                "description": "Input parameters for datetime conversion",
+                "example": {
+                    "datetime": "2024-10-24T12:00:00Z",
+                    "timezone": "Asia/Kolkata"
                 },
-                "timezone": {
-                    "type": "string",
-                    "description": "The timezone to which the datetime should be converted, refer: https://worldtimeapi.org/timezones",
-                    "example": "Asia/Kolkata"
+                "properties": {
+                    "datetime": {
+                        "type": "string",
+                        "description": "The datetime to be converted to the specified timezone in ISO format",
+                        "example": "2024-10-24T12:00:00Z"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "description": "The timezone to which the datetime should be converted, refer: https://worldtimeapi.org/timezones",
+                        "example": "Asia/Kolkata"
+                    }
                 }
             },
             "output": {
-                "status": {
-                    "type": "string",
-                    "description": "The status of the response",
-                    "example": "success"
+                "type": "object",
+                "description": "Response of the datetime conversion",
+                "example": {
+                    "status": "success",
+                    "message": "The datetime 2024-10-24T12:00:00Z is converted to 2024-10-24T17:30:00.000Z in the timezone Asia/Kolkata",
+                    "timestamp": "2024-10-29T11:48:57.173Z",
+                    "original_datetime": "2024-10-24T12:00:00Z",
+                    "timezone": "Asia/Kolkata",
+                    "converted_datetime": "2024-10-24T17:30:00.000Z",
+                    "date": "Thu Oct 24 2024",
+                    "time": "5:30:00 PM",
+                    "day": "Thursday"
                 },
-                "message": {
-                    "type": "string",
-                    "description": "The message describing the conversion",
-                    "example": "The datetime 2024-10-24T12:00:00Z is converted to 2024-10-24T17:30:00Z in the timezone Asia/Kolkata"
-                },
-                "timestamp": {
-                    "type": "string",
-                    "description": "The timestamp of the response",
-                    "example": "2024-10-24T12:00:00Z"
-                },
-                "timezone": {
-                    "type": "string",
-                    "description": "The timezone to which the datetime is converted",
-                    "example": "Asia/Kolkata"
-                },
-                "original_datetime": {
-                    "type": "string",
-                    "description": "The original datetime string provided in the input or the UTC datetime if not provided in ISO format",
-                    "example": "2024-10-24T12:00:00Z"
-                },
-                "converted_datetime": {
-                    "type": "string",
-                    "description": "The converted datetime string in the specified timezone in ISO format",
-                    "example": "2024-10-24T17:30:00Z"
-                },
-                "date": {
-                    "type": "string",
-                    "description": "The date part of the converted datetime",
-                    "example": "Mon Oct 24 2024"
-                },
-                "time": {
-                    "type": "string",
-                    "description": "The time part of the converted datetime",
-                    "example": "5:30:00 PM"
-                },
-                "day": {
-                    "type": "string",
-                    "description": "The day of the week of the converted datetime",
-                    "example": "Thursday"
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the response",
+                        "example": "success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "The message describing the conversion",
+                        "example": "The datetime 2024-10-24T12:00:00Z is converted to 2024-10-24T17:30:00Z in the timezone Asia/Kolkata"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "description": "The timestamp of the response",
+                        "example": "2024-10-24T12:00:00Z"
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "description": "The timezone to which the datetime is converted",
+                        "example": "Asia/Kolkata"
+                    },
+                    "original_datetime": {
+                        "type": "string",
+                        "description": "The original datetime string provided in the input or the UTC datetime if not provided in ISO format",
+                        "example": "2024-10-24T12:00:00Z"
+                    },
+                    "converted_datetime": {
+                        "type": "string",
+                        "description": "The converted datetime string in the specified timezone in ISO format",
+                        "example": "2024-10-24T17:30:00Z"
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "The date part of the converted datetime",
+                        "example": "Mon Oct 24 2024"
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "The time part of the converted datetime",
+                        "example": "5:30:00 PM"
+                    },
+                    "day": {
+                        "type": "string",
+                        "description": "The day of the week of the converted datetime",
+                        "example": "Thursday"
+                    }
                 }
             }
         });
