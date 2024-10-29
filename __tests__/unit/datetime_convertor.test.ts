@@ -25,14 +25,7 @@ describe('datetimeConvertor', () => {
         const result = datetimeConvertor('', timezone);
 
         const now = new Date();
-        const expected = new Intl.DateTimeFormat('en-US', { timeZone: timezone, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(now);
-        const expectedDateParts = expected.reduce((acc, part) => {
-            if (part.type !== 'literal' && part.type !== 'dayPeriod') {
-                acc[part.type] = part.value;
-            }
-            return acc;
-        }, {} as Record<string, string>);
-        const expectedDate = new Date(`${expectedDateParts.year}-${expectedDateParts.month}-${expectedDateParts.day}T${expectedDateParts.hour}:${expectedDateParts.minute}:${expectedDateParts.second}`);
+        const expectedDate = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
         
         expect(result.toISOString()).toBe(expectedDate.toISOString());
     });

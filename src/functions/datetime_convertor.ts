@@ -9,7 +9,7 @@
 export const datetimeConvertor = (datetime: string, timezone: string): Date => {
     try {
         // If datetime is not provided, we will take the UTC date and time
-        const date = datetime ? new Date(datetime) : new Date();
+        const date = (datetime && datetime.length) ? new Date(datetime) : new Date();
     
         const formatter = new Intl.DateTimeFormat('en-US', { timeZone: timezone, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const parts = formatter.formatToParts(date);
